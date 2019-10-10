@@ -3,13 +3,14 @@
 # TODO: Create database and initialize database table structure
 database="company"
 
+psql -c 'DROP DATABASE company'
 psql -c 'CREATE DATABASE company'
 # CREATE DATABASE company;
 
 # psql DROP DATABASE $company;
 
 psql -d $database -c "CREATE TABLE employees (
-	ssn PRIMARY KEY NOT NULL,
+  ssn varchar(50) NOT NULL PRIMARY KEY UNIQUE,
 	first_name varchar(50),
 	last_name varchar(50),
 	year_of_birth int,
@@ -17,7 +18,8 @@ psql -d $database -c "CREATE TABLE employees (
 )";
 
 psql -d $database -c "CREATE TABLE jobs (
-  FOREIGN KEY (snn) REFERENCES epmloyees(ssn),
+  FOREIGN KEY (ssn) REFERENCES employees (ssn),
+	ssn varchar(50),
 	company varchar(50),
 	salary int,
 	experience int
